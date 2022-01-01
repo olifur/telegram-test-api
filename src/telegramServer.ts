@@ -70,6 +70,7 @@ export type StoredClientUpdate =
 interface Storage {
   userMessages: StoredClientUpdate[];
   botMessages: StoredBotUpdate[];
+  chatMembers: any;
 }
 
 export interface TelegramServerConfig {
@@ -104,6 +105,7 @@ export class TelegramServer extends EventEmitter {
   public storage: Storage = {
     userMessages: [],
     botMessages: [],
+    chatMembers: {},
   };
 
   // eslint-disable-next-line no-undef
@@ -128,6 +130,7 @@ export class TelegramServer extends EventEmitter {
       this.storage = {
         userMessages: [],
         botMessages: [],
+        chatMembers: {}
       };
     }
     for (let i = 0; i < routes.length; i++) {
@@ -377,7 +380,6 @@ export class TelegramServer extends EventEmitter {
       return TelegramServer.formatUpdate(update);
     });
   }
-
   async start() {
     this.server = shutdown(http.createServer(this.webServer));
     await new Promise((resolve, reject) => {
@@ -450,6 +452,22 @@ export class TelegramServer extends EventEmitter {
     return false;
   }
 
+  getChatMember(chatId: number, userId: number) {
+    if(chatId in this.storage.chatMembers) {
+      if(userId in this.storage.chatMembers[chatId]) {
+        return this.storage.chatMembers[chatId][userId]
+      }
+    }
+    return null
+  }
+
+  setChatMember(chatId: number, userId: number, firstName: string, username: string) {
+    if(! this.storage.chatMembers.hasOwnProperty(chatId)) {
+      this.storage.chatMembers[chatId] = {}
+    }
+    this.storage.chatMembers[chatId][userId] = {'user': {'id': userId, is_bot: false, 'first_name': firstName, 'username': username, language_code: 'en'}, 'status': 'creator','is_anonymous':false}
+  }
+
   async stop() {
     if (this.server === undefined) {
       debugServer('Cant stop server - it is not running!');
@@ -470,6 +488,7 @@ export class TelegramServer extends EventEmitter {
     this.storage = {
       userMessages: [],
       botMessages: [],
+      chatMembers: {}
     };
     await expressStop;
     debugServer('Server shutdown ok');

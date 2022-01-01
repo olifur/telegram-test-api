@@ -7,6 +7,10 @@ import { editMessageText } from './editMessageText';
 import { setWebhook } from './setWebhook';
 import { deleteWebhook } from './deleteWebhook';
 import { unknownMethod } from './unknownMethod';
+import { getChatMember } from './getChatMember';
+import { setChatMember } from './setChatMember';
+
+
 
 export const botRoutes = [
   deleteMessage,
@@ -17,5 +21,7 @@ export const botRoutes = [
   sendMessage,
   setWebhook,
   deleteWebhook,
+  getChatMember,
+  setChatMember,
   unknownMethod, // This route should go after all bot API methods.
 ];
