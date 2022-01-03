@@ -9,7 +9,7 @@ import { deleteWebhook } from './deleteWebhook';
 import { unknownMethod } from './unknownMethod';
 import { getChatMember } from './getChatMember';
 import { setChatMember } from './setChatMember';
-
+import { sendChatAction } from './sendChatAction';
 
 
 export const botRoutes = [
@@ -23,5 +23,6 @@ export const botRoutes = [
   deleteWebhook,
   getChatMember,
   setChatMember,
-  unknownMethod, // This route should go after all bot API methods.
+  sendChatAction,
+  unknownMethod // This route should go after all bot API methods.
 ];

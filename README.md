@@ -1,5 +1,16 @@
 # Telegram Test Api
 
+```
+../../../node_modules/.bin/tsc
+
+curl -X POST      -H 'Content-Type: application/json'      -d '{"chat_id": "1", "user_id": "1", "first_name": "oli", "username": "horst123"}'      http://localhost:9000/bot1111:abcde/setChatMember
+curl -X POST      -H 'Content-Type: application/json'      -d '{"chat_id": "1", "user_id": "1"}'      http://localhost:9000/bot1111:abcde/getChatMember
+
+
+curl -X POST      -H 'Content-Type: application/json'      -d '{"chat_id": "1", "action": "confirm"}'      http://localhost:9000/bot1111:abcde/sendChatAction
+```
+
+
 [![npm](https://img.shields.io/npm/v/telegram-test-api.svg)](https://npm.im/telegram-test-api)
 [![license](https://img.shields.io/npm/l/telegram-test-api.svg)](https://npm.im/telegram-test-api)
 [![Build](https://github.com/jehy/telegram-test-api/workflows/Build/badge.svg)](https://github.com/jehy/telegram-test-api/actions/workflows/main.yml)
