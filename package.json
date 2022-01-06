@@ -23,8 +23,8 @@
     "build:watch": "tsc -w",
     "coverage": "jest --coverage --coverageReporters=\"text\"",
     "coverage-report": "jest --coverage",
-    "prepublishOnly": "npm run build && npm run coverage-report && npm run lint"
-    "postinstall": "tsc --outDir ./build"
+    "prepublishOnly": "npm run build && npm run coverage-report && npm run lint",
+    "postinstall": "cd ./node_modules/telegram-test-api && npm install && npm run build"
   },
   "repository": {
     "type": "git",
