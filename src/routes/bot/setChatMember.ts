@@ -7,12 +7,11 @@ import type { Route } from '../route';
  */
 export const setChatMember: Route = (app, telegramServer) => {
   handle(app, '/bot:token/setChatMember', (req, res, _next) => {
-    const chatId = Number(req.body.chat_id);
-    const userId = Number(req.body.user_id);
-    const firstName = String(req.body.first_name)
+    const chatId = Number(req.body.chatId);
+    const userId = Number(req.body.userId);
+    const firstName = String(req.body.firstName)
     const username = String(req.body.username)
    // this.storage.chatMembers[chatId][userId] = {'user': {'id': userId, is_bot: false, 'first_name': firstName, 'username': username, language_code: 'en'}, 'status': 'creator','is_anonymous':false}
-
 
     if (!Number.isFinite(chatId) || !Number.isFinite(userId) || !String(firstName) || !String(username)) {
       res.sendResult({
@@ -25,9 +24,10 @@ export const setChatMember: Route = (app, telegramServer) => {
 
     telegramServer.setChatMember(chatId, userId, firstName, username);
 
+
     res.sendResult({
       ok: true,
-      result: "object has been set",
+      result: null,
     });
   });
 };

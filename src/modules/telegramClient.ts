@@ -199,6 +199,35 @@ export class TelegramClient {
     return res && res.data;
   }
 
+  async getChatMember(chatId: String, userId: String) {
+    const data = { token: this.botToken, chatId: chatId, userId: userId };
+    const res = await request({
+      url: `${this.url}/bot${this.botToken}/getChatMember`,
+      method: 'POST',
+      data,
+    });
+    return res && res.data;
+  }
+  async setChatMember(chatId: String, userId: String, firstName: String, username: String) {
+    const data = { chatId: chatId, userId: userId, firstName: firstName, username: username};
+    const res = await request({
+      url: `${this.url}/bot${this.botToken}/setChatMember`,
+      method: 'POST',
+      data,
+    });
+    return res && res.data;
+  }
+  async sendChatAction(chatId: String, myaction: String) {
+    const data = { chatId: chatId, action: myaction};
+    const res = await request({
+      url: `${this.url}/bot${this.botToken}/sendChatAction`,
+      method: 'POST',
+      data,
+    });
+    return res && res.data;
+  }
+  
+
   async sendCommand(message: CommandRequest): Promise<CommonResponse> {
     const res = await request({
       url: `${this.url}/sendCommand`,

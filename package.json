@@ -24,12 +24,13 @@
     "coverage": "jest --coverage --coverageReporters=\"text\"",
     "coverage-report": "jest --coverage",
     "prepublishOnly": "npm run build && npm run coverage-report && npm run lint"
+    "postinstall": "tsc --outDir ./build"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jehy/telegram-test-api"
+    "url": "https://github.com/olifur/telegram-test-api"
   },
-  "author": "Jehy <npm@jehy.ru> https://github.com/jehy",
+  "author": "Jehy <npm@olifur.ru> https://github.com/olifur",
   "contributors": [
     {
       "name": "Petr Ermishkin",
@@ -62,7 +63,8 @@
     "deep-extend": "~0.6.0",
     "express": "~4.17.1",
     "http-shutdown": "~1.2.2",
-    "p-timeout": "^4.1.0"
+    "p-timeout": "^4.1.0",
+    "tsc": "2.0.3"
   },
   "devDependencies": {
     "@types/chai": "4.2.22",
